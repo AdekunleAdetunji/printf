@@ -40,6 +40,8 @@ int _printf(const char *format, ...)
 	int len, i, j;
 
 	va_start(args, format);
+	if (format == NULL)
+		return (-1);
 	for (i = 0; format != NULL && format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
@@ -61,13 +63,9 @@ int _printf(const char *format, ...)
 				i += len - 1;
 			}
 			else if (format[i] == '%')
-			{
 				_write_char('%');
-			}
 			else
-			{
 				_write_char(format[i]);
-			}
 		}
 		else
 			_write_char(format[i]);
