@@ -1,7 +1,4 @@
 #include "main.h"
-#include <unistd.h>
-#include <stdarg.h>
-#include <string.h>
 
 /**
  * _printf - print the output of a formatted string
@@ -47,5 +44,6 @@ int _printf(const char *format, ...)
 		}
 		count += 1;
 	}
+	va_end(arg_list);
 	return (count);
 }
