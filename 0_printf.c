@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 			write(1, &format[i], 1), count += 1;
 			continue;
 		}
-		switch(format[i + 1])
+		switch (format[i + 1])
 		{
 		case 'c':
 			c = va_arg(arg_list, int), write(1, &c, 1);
