@@ -1,5 +1,16 @@
-#include <stdarg.h>
 #include "main.h"
+
+/**
+ * _write_char - writes a single character to the standard output
+ * @c: character to write
+ *
+ * Return: 1 on success, -1 on failure
+ */
+
+int _write_char(char c)
+{
+	return (write(1, &c, 1));
+}
 
 /**
  * _strlen_recursion - find the length of a string
@@ -26,7 +37,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	char c, *s;
-	int len, i;
+	int len, i, j;
 
 	va_start(args, format);
 	for (i = 0; format != NULL && format[i] != '\0'; i++)
@@ -37,29 +48,29 @@ int _printf(const char *format, ...)
 			if (format[i] == 'c')
 			{
 				c = va_arg(args, int);
-				_putchar(c);
+				_write_char(c);
 			}
 			else if (format[i] == 's')
 			{
 				s = va_arg(args, char *);
-				for (i = 0; s[i] != '\0'; i++)
+				for (j = 0; s[j] != '\0'; j++)
 				{
-					_putchar(s[i]);
+					_write_char(s[j]);
 				}
 				len = _strlen_recursion(s);
 				i += len - 1;
 			}
 			else if (format[i] == '%')
 			{
-				_putchar('%');
+				_write_char('%');
 			}
 			else
 			{
-				_putchar(format[i]);
+				_write_char(format[i]);
 			}
 		}
 		else
-			_putchar(format[i]);
+			_write_char(format[i]);
 	}
 	va_end(args);
 	return (i);
