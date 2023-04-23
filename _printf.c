@@ -30,7 +30,7 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 			{
 				write(1, &"(null)", 6);
 				*i += 1;
-				*count += 1;
+				*count += 5;
 			}
 			break;
 		case '%':
