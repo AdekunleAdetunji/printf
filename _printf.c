@@ -26,6 +26,12 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 				write(1, str, strlen(str));
 				*i += 1;
 			}
+			else if (str == NULL)
+			{
+				write(1, &"(null)", 6);
+				*i += 1;
+				*count += 1;
+			}
 			break;
 		case '%':
 			write(1, &per, 1), *i += 1;
@@ -59,6 +65,13 @@ int _printf(const char *format, ...)
 		}
 		if (format[i + 1] == '\0')
 			return (-1);
+		if (format[i + 1] == '%')
+		{
+			write(1, "%", 1);
+			count += 1;
+			i += 1;
+			continue;
+		}
 		char_str(format, arg_list, &i, &count);
 	}
 	va_end(arg_list);
