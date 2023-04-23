@@ -31,7 +31,7 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 			write(1, &per, 1), *i += 1;
 			break;
 		default:
-			write(1, &per, 1), *count += 1;
+			write(1, &per, 1);
 			break;
 		}
 	*count += 1;
