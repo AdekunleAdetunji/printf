@@ -25,6 +25,7 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 			{
 				write(1, str, strlen(str));
 				*i += 1;
+				*count += strlen(str) - 1;
 			}
 			else if (str == NULL)
 			{
