@@ -16,11 +16,8 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 		{
 		case 'c':
 			c = va_arg(arg_list, int);
-			if (c)
-			{
-				write(1, &c, 1);
-				*i += 1;
-			}
+			write(1, &c, 1);
+			*i += 1;
 			break;
 		case 's':
 			str = va_arg(arg_list, char *);
@@ -51,7 +48,7 @@ int _printf(const char *format, ...)
 	va_list arg_list;
 
 	if (format == NULL)
-		return (count);
+		return (-1);
 	va_start(arg_list, format);
 	for (i = 0; format[i] > '\0'; i++)
 	{
