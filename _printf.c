@@ -57,6 +57,8 @@ int _printf(const char *format, ...)
 			write(1, &format[i], 1), count += 1;
 			continue;
 		}
+		if (format[i + 1] == '\0')
+			return (-1);
 		char_str(format, arg_list, &i, &count);
 	}
 	va_end(arg_list);
