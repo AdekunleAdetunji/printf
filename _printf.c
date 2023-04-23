@@ -16,6 +16,8 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 		{
 		case 'c':
 			c = va_arg(arg_list, int);
+			if (c < 0)
+				c = (unsigned int) c;
 			write(1, &c, 1);
 			*i += 1;
 			break;
