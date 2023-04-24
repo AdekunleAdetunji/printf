@@ -1,6 +1,6 @@
 #include "main.h"
 /**
-* print_nuber - prints an integer to stdout
+* print_integer - prints an integer to stdout
 * @n: The integer to print
 * Return: Void
 */
@@ -19,14 +19,14 @@ void print_integer(int n)
 	write(1, &j, 1);
 }
 /**
-* char_str - replaces %c, %s, %, flag in code block
+* char_s - replaces %c, %s, %, flag in code block
 * @format: The character string under consideration
 * @arg_list: The variadic argument list
 * @i: The i value we are iterating with
 * @count: The count of the values printed to stdout
 * Return: Void values
 */
-void char_str(const char *format, va_list arg_list, int *i, int *count)
+void char_s(const char *format, va_list arg_list, int *i, int *count)
 {
 	char *str, c, per = '%';
 	int num;
@@ -50,8 +50,7 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 			{
 				write(1, &"(null)", 6);
 				*i += 1;
-				*count += 5;
-			}
+				*count += 5; }
 			break;
 		case 'd':
 		case 'i':
@@ -64,6 +63,8 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 			break;
 		default:
 			write(1, &per, 1);
+			write(1, &format[*i + 1], 1);
+			*i += 1;
 			break;
 	}
 	*count += 1;
@@ -98,7 +99,7 @@ int _printf(const char *format, ...)
 			i += 1;
 			continue;
 		}
-		char_str(format, arg_list, &i, &count);
+		char_s(format, arg_list, &i, &count);
 	}
 	va_end(arg_list);
 	return (count);
