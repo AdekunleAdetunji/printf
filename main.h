@@ -11,4 +11,7 @@ char *_itoa(int num);
 char *_reverse(char *str);
 void print_integer(int n);
 int _printf(const char *format, ...);
+void convert_to_binary(unsigned int n);
+void char_s(const char *format, va_list arg_list, int *i, int *count);
+
 #endif
