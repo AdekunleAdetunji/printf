@@ -28,30 +28,11 @@ void print_integer(int n)
 */
 void char_s(const char *format, va_list arg_list, int *i, int *count)
 {
-	char *str, c, per = '%';
+	char per = '%';
 	int num;
 
 	switch (format[*i + 1])
 	{
-		case 'c':
-			c = va_arg(arg_list, int);
-			write(1, &c, 1);
-			*i += 1;
-			break;
-		case 's':
-			str = va_arg(arg_list, char *);
-			if (str)
-			{
-				write(1, str, strlen(str));
-				*i += 1;
-				*count += strlen(str) - 1;
-			}
-			else if (str == NULL)
-			{
-				write(1, &"(null)", 6);
-				*i += 1;
-				*count += 5; }
-			break;
 		case 'd':
 		case 'i':
 			num = va_arg(arg_list, int);
