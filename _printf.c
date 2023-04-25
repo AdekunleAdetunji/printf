@@ -55,17 +55,20 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 void int_handle(va_list arg_list, int *count, int *i)
 {
 	int x, arg, absolute, pow = 1;
+	char c;
 
 	arg = va_arg(arg_list, int);
 	if (arg < 0)
 	{
-		putchar('-');
+		c = '-';
+		write(1, &c, 1);
 		*count += 1;
 	}
 	absolute = abs(arg);
 	if (absolute < 10)
 	{
-		putchar('0' + absolute);
+		c = '0' + absolute;
+		write(1, &c, 1);
 		*i += 1;
 		*count += 1;
 	}
@@ -77,7 +80,8 @@ void int_handle(va_list arg_list, int *count, int *i)
 		}
 		for (x = 0; pow > 0; x++)
 		{
-			putchar('0' + absolute / pow);
+			c = '0' + (absolute / pow);
+			write(1, &c, 1);
 			absolute %= pow;
 			pow /= 10;
 			*count += 1;
