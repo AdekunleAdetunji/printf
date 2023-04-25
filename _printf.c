@@ -6,7 +6,7 @@
  * @arg_list: The variadic argument list
  * @i: The i value we are iterating with
  * @count: The count of the values printed to stdout
- * Return: Void values
+ * Return: Void
  */
 void char_str(const char *format, va_list arg_list, int *i, int *count)
 {
@@ -35,13 +35,55 @@ void char_str(const char *format, va_list arg_list, int *i, int *count)
 			}
 			break;
 		case '%':
-			write(1, &per, 1), *i += 1;
+			write(1, &per, 1);
+			*i += 1;
 			break;
 		default:
 			write(1, &per, 1);
 			break;
 		}
 	*count += 1;
+}
+
+/**
+ * int_handle - handles the %d and %i conversion specifier
+ * @arg_list: The variable argument list following the function
+ * @i: The value we are iterating with
+ * @count: The count of characters printed
+ * Return: Void
+ */
+void int_handle(va_list arg_list, int *count, int *i)
+{
+	int x, arg, absolute, pow = 1;
+
+	arg = va_arg(arg_list, int);
+	if (arg < 0)
+	{
+		putchar('-');
+		*count += 1;
+	}
+	absolute = abs(arg);
+	if (absolute < 10)
+	{
+		putchar('0' + absolute);
+		*i += 1;
+		*count += 1;
+	}
+	else if (absolute > 9)
+	{
+		for (x = 0; (absolute / pow) > 9 ; x++)
+		{
+			pow *= 10;
+		}
+		for (x = 0; pow > 0; x++)
+		{
+			putchar('0' + absolute / pow);
+			absolute %= pow;
+			pow /= 10;
+			*count += 1;
+		}
+		*i += 1;
+	}
 }
 
 /**
@@ -66,11 +108,9 @@ int _printf(const char *format, ...)
 		}
 		if (format[i + 1] == '\0')
 			return (-1);
-		if (format[i + 1] == '%')
+		if (format[i + 1] == 'i' || format[i + 1] == 'd')
 		{
-			write(1, "%", 1);
-			count += 1;
-			i += 1;
+			int_handle(arg_list, &count, &i);
 			continue;
 		}
 		char_str(format, arg_list, &i, &count);
