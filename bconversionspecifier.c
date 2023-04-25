@@ -2,7 +2,7 @@
 
 /**
  * convert_to_binary - converts argument to binary
- * @b: unsigned int argument converted
+ * @n: unsigned int argument converted
  *
  * Return: void
  */
@@ -25,11 +25,11 @@ void convert_to_binary(unsigned int n)
 	else
 	{
 		i -= 1;
-		for (;i >= 0; i--)
-	{
+		for (; i >= 0; i--)
+		{
 		j = digits[i] + '0';
 		write(1, &j, 1);
-	}
+		}
 	}
 	write(1, "\n", 1);
 }
@@ -46,7 +46,7 @@ void char_s(const char *format, va_list arg_list, int *i, int *count)
 {
 	unsigned int num1;
 
-	switch(format[*i + 1])
+	switch (format[*i + 1])
 	{
 		case 'b':
 			num1 = va_arg(arg_list, unsigned int);
@@ -57,7 +57,7 @@ void char_s(const char *format, va_list arg_list, int *i, int *count)
 		default:
 			write(1, &format[*i + 1], 1);
 			*i += 1;
-			*count +=1;
+			*count += 1;
 			break;
 	}
 	*count += 1;
